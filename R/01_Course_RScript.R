@@ -260,3 +260,5 @@ ebola_plot_point_v7 <- ggplot(data = ebola_data_filtered_cases,
   theme(panel.spacing = unit(2, "lines")) +
   facet_grid(cols = vars(country))
 ebola_plot_point_v7
+
+#Test changes for Github
