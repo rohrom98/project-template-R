@@ -1,0 +1,65 @@
+---
+title: "PHS Course - Projects in R"
+author: "Roman Rohner"
+date: "`r date()`"
+format: 
+  html:
+    toc: true
+    code-fold:show
+    code-tools: true
+    df-print: paged
+    embed-resources: true
+  pdf: 
+    toc: true
+  docx:
+    toc: true
+editor: visual
+---
+
+```{r}
+#| output: false
+# Load Libraries
+library(here)
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(readr)
+library(lubridate)
+```
+
+## Introduction
+
+The aim of this exercise is to visualize the increase in lab-confirmed cases of Ebola in African countries.
+
+
+##Data
+
+asd
+
+
+## Results
+
+@ebola_cases shows the number of cases in Guinea, Liberia and Sierra Leone from `r window_start`to `r window_end`.
+
+```{r}
+#| label: ebola_cases
+#| fig-cap: "Ebola cases"
+#| warning: false
+
+ebola_data <- read_csv("data/raw/ebola.csv")
+ebola_data <- ebola_data %>% arrange(Date)
+ebola_data_filtered_cases <- ebola_data %>% 
+  select(date = Date, country = Country, cum_conf_cases = Cum_conf_cases) %>% 
+  filter(date <= ymd("2015-03-31") & 
+           (country == "Guinea" | country ==  "Liberia" | country == "Sierra Leone"))
+ebola_data_filtered_cases
+
+ggplot(data = ebola_data_filtered_cases,
+       mapping = aes(x = date, y = cum_conf_cases)) +
+  geom_point()
+```
+
+
+## Conclusions
+
+asdf
